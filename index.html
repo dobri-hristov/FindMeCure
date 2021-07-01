@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="./images/logo-white.png" alt="logo immage">
+                <p class="logo-text">TrialHub</p>
+            </div>
+            <ul class="navbar">
+                <li><a class="nav-link" href="#">Contact US</a></li>
+                <li><a class="nav-link" href="#">Sign In</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <div class="covid-impact ">
+                <div class="covid-imapct-container">
+                    Find out how Covid-19 impacted the clinical research industry
+                    <a
+                        href="https://trialhub.findmecure.com/blog/whitepapers/recovering-from-covid-the-2021-clinical-research-market/">
+                        <b>Get our 2021 Market Overview</b></a>
+                </div>
+            </div>
+            <section class="above-the-fold">
+                <article class="description-article">
+                    <p class="description-article-title">Clinical Trial Strategy That Stands Out</p>
+                    <p class="description-article-text">Why losing studies you can win with TrialHub</p>
+                    <div id="cta" class="cta">
+                        <input type="text" class="cta-input" placeholder="Your work email" name="email">
+                        <button id="joke" type="button" class="btn">See TrialHub in Action</button>
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="testimonial-container">
+                            <i class="fa fa-quote-left"></i>
+                            <p>Previously only the big CROs and pharma could afford such a sophisticated platform.
+                                TrialHub is a game changer!</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="banner">
+                    <img class="banner" src="./images/banner.png" alt="TrialHub - All Feasibility Data Combined With Local Experts’
+                    Insights" title="stop wasting time on manual research">
+                </article>
+            </section>
+        </section>
+        <div class="line"></div>
+        <section class="partners-section">
+            <div class="partners">
+                <p><b>Among our Clients</b></p>
+                <div class="partners-container" class="partners-icons-container">
+                    <img class="company" src="./images/partners/augustresearch.png" alt="augustresearch">
+                    <img class="company" src="./images/partners/novartis.png" alt="novartis">
+                    <img class="company" src="./images/partners/veristat.png" alt="veristat">
+                    <img class="company" src="./images/partners/bionical-emas.png" alt="bionical-emas">
+                    <img class="company" src="./images/partners/easthorn.png" alt="easthorn">
+                    <img class="company" src="./images/partners/healthdec.png" alt="healthdec">
+                    <img class="company" src="./images/partners/opis.png" alt="opis">
+                    <img class="company" src="./images/partners/prometrika.png" alt="prometrika">
+                    <img class="company" src="./images/partners/protrials.png" alt="protrials">
+
+                    <img class="company" src="" alt="">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="footer-container">
+            <div class="rights">
+                <div class="logo-container-footer">
+                    <img src="./images/logo-white.png" alt="logo immage">
+                    <p class="logo-text-footer">TrialHub</p>
+                </div>
+                <p class="plan">Plan Successful Clinical Trials</p>
+                <p>TrialHub by FindMeCure © 2021</p>
+            </div>
+            <section class="footer-nav">
+                <ul class="footer-links">
+                    <li>Links</li>
+                    <li>About Us</li>
+                    <li>Blog</li>
+                </ul>
+                <ul class="footer-links">
+                    <li>Follow Us</li>
+                    <li><i class="fab fa-linkedin-in footer-i"></i>Linkedin</li>
+                    <li><i class="fab fa-twitter footer-i"></i>Twitter</li>
+                </ul>
+                <ul class="footer-links">
+                    <li>Legal</li>
+                    <li>Privacy Policy</li>
+                    <li>Terms of Use</li>
+                </ul>
+            </section>
+        </section>
+    </footer>
+
+    <div id="infoBox" class="notification">
+        <div id="info" class="notification-container">
+            <span>Info</span>
+            <i id="hide" class="fas fa-times"></i>
+        </div>
+    </div>
+
+    <script>
+        $("#joke").on('click', function () {
+            let url = 'https://api.chucknorris.io/jokes/random'
+            var input = $("#cta input[name=email]").val()
+
+            if (/(.+)@(.+){2,}\.(.+){2,}/.test(input) === false) {
+                alert('Please insert a valid Email!')
+            } else {
+                $.ajax({
+                    method: "GET",
+                    url: url
+                }).then(function (res) {
+                    showInfo(res.value)
+                    $("#cta input[name=email]").val("")
+                }).catch(function (err) {
+                    console.log(err)
+                })
+            }
+        })
+
+        function showInfo(joke) {
+            $("#info > span").text(joke)
+            $("#infoBox").show()
+            setTimeout(function () {
+                $("#infoBox").hide()
+            }, 5000)
+        }
+
+        $("#hide").on('click', function () {
+            $("#infoBox").hide()
+        })
+    </script>
+</body>
+
+</html>
